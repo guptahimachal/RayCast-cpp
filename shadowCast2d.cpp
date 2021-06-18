@@ -7,25 +7,70 @@ using namespace std;
 #define OLC_PGE_APPLICATION
 #include "olcPixelGameEngine.h"
 
+struct sEdge{
+	float sX, sY;
+	float eX, eY;
+};
+struct sCell {
+	int edge_id[4];
+	bool edge_exist[4];
+	bool exist = false;
+};
+
+#define NORTH 0
+#define SOUTH 1
+#define EAST 2
+#define WEST 3
+
+
 // Override base class with your custom functionality
 class ShadowCasting2D : public olc::PixelGameEngine
 {
+private:
+	sCell* world;
+	int nWorldWidth = 40;
+	int nWorldHeight = 30;
+
 public:
 	ShadowCasting2D()
 	{
 		// Name your application
 		sAppName = "ShadowCasting2D";
 	}
-
 public:
 	bool OnUserCreate() override
 	{
 		// Called once at the start, so create things here
+		world = new sCell[nWorldWidth * nWorldHeight];
 		return true;
 	}
 
 	bool OnUserUpdate(float fElapsedTime) override
 	{
+		float fBlockWidth = 16.0f;
+		// Updating Mouse position
+		float fSourceX = GetMouseX();
+		float fSourceY = GetMouseY();
+
+		// Checking if Mouse has been left clicked 
+		// SO that to switch between making tile and light src
+		if (GetMouse(0).bReleased) {
+			// To get the index of the tile at which the mouse was released
+			int i = ((int)fSourceX / (int)fBlockWidth) * nWorldWidth + ((int)fSourceY / (int)fBlockWidth);
+			// Making the cell exist as there is a Opaque block here
+			world[i].exist = !world[i].exist;
+		}
+		
+		// Drawing The selected blocks
+		// First clearing all screen
+		Clear(olc::BLACK);
+		// Drawing Blocks form tilemap
+		for(int x=0;x<nWorldWidth;x++)
+			for (int y = 0; y < nWorldHeight; y++) {
+				if(world[x*nWorldWidth + y].exist)
+					FillRect(x*fBlockWidth , y*fBlockWidth , fBlockWidth,fBlockWidth , olc::BLUE);
+			}
+
 		return true;
 	}
 };
@@ -33,7 +78,9 @@ public:
 
 int main()
 {
-    std::cout << "Hello World!\n";
+	ShadowCasting2D demo;
+	if (demo.Construct(640, 480, 2, 2))
+		demo.Start();
 	
 }
 
