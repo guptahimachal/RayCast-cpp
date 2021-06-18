@@ -1,0 +1,2 @@
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\x64\Debug\shadowCast2d.exe
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\x64\Debug\shadowCast2d.pdb
