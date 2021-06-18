@@ -1,8 +1,20 @@
 ﻿  shadowCast2d.cpp
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(52,18): warning C4244: 'initializing': conversion from 'int32_t' to 'float', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(53,18): warning C4244: 'initializing': conversion from 'int32_t' to 'float', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(71,59): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(71,47): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(71,32): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(71,16): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(77,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(102,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(127,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(152,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(181,18): warning C4244: 'initializing': conversion from 'int32_t' to 'float', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(182,18): warning C4244: 'initializing': conversion from 'int32_t' to 'float', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(201,59): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(201,47): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(201,32): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(201,16): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(206,29): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(206,24): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(206,19): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(206,14): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(207,22): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(207,16): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(208,22): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(208,16): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
   shadowCast2d.vcxproj -> D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\x64\Debug\shadowCast2d.exe
