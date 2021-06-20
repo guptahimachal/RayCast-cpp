@@ -1,6 +1,7 @@
 // shadowCast2d.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
+#define _USE_MATH_DEFINES
 #include <iostream>
 using namespace std;
 
@@ -30,38 +31,40 @@ private:
 	sCell* world;
 	int nWorldWidth = 40;
 	int nWorldHeight = 30;
+	float fBlockWidth = 16.0f;
 
-	pair<float,float> startRay(float lightX, float lightY){
+	vector <pair<int,int>> endPoints;
+	void startRay(float lightX, float lightY){
 
-		// lightX and lightY are mouse positions
-		// which are used to determine the direction of light ray
-		float r_dx = lightX;
-		float r_dy = lightY;
-		float r_dxy = sqrtf(r_dx*r_dx + r_dy*r_dy);
+		endPoints.clear();
+		// lightX and lightY are mouse positions which'll be starting posions of light rays
+		float r_px = lightX;
+		float r_py = lightY;
+		float radius = 20 * fBlockWidth;
+		int numRays = 180;
+		for (int ang = 1; ang < 361; ang += 360 / numRays) {
+			float r_dx = radius * cos(ang*M_PI/180);
+			float r_dy = radius * sin(ang*M_PI/180);
+			float minT1 = 50,T1,T2;
 
-		float cos = r_dx/r_dxy;
-		float sin = r_dy/r_dxy;
-		float minT1 = 1000;
-		float T1,T2;
+			for(auto edge:vecEdges){
+				
+				float s_px = edge.sX; float s_dx = edge.eX-edge.sX;
+				float s_py = edge.sY; float s_dy = edge.eY-edge.sY;
+				// Solve for T2!
+				T2 = (r_dx*(s_py-r_py) + r_dy*(r_px-s_px))/(s_dx*r_dy - s_dy*r_dx);
 
-		// For this ray finding the nearest collision point with the edge by checking it with all edges
-		// Rays are send out with radius 50 units
-		for(auto edge:vecEdges){
-			// Solve for T2!
-			T2 = (50*cos*(edge.sY-0) + 50*sin*(-edge.sX))/((edge.eX-edge.sX)*50*sin - (edge.eY-edge.sY)*50*cos);
+				// Plug the value of T2 to get T1
+				T1 = (s_px+s_dx*T2-r_px)/r_dx;
 
-			// Plug the value of T2 to get T1
-			T1 = (edge.sX+(edge.eX-edge.sX)*T2-0)/(50*cos);
-
-			if(T1>0 && T2>0 && T2<1){
-				if(T1 < minT1)
-					minT1 = T1;
-			}	
+				if(T1>0 && T2>0 && T2<1){
+					if(T1 < minT1)
+						minT1 = T1;
+				}
+					
+			}
+			endPoints.push_back( { r_px + r_dx*minT1  ,  r_py + r_dy*minT1 } );
 		}
-		
-		// Returning the nearest collision point coordinates
-		pair<float,float> endPoint = {50*cos*minT1,50*sin*minT1};
-		return endPoint;
 
 	}
 
@@ -204,19 +207,33 @@ public:
 	{
 		// Called once at the start, so create things here
 		world = new sCell[nWorldWidth * nWorldHeight];
+
+
+		// Add a boundary to the world
+		for (int x = 1; x < (nWorldWidth - 1); x++)
+		{
+			world[1 * nWorldWidth + x].exist = true;
+			world[(nWorldHeight - 2) * nWorldWidth + x].exist = true;
+		}
+
+		for (int x = 1; x < (nWorldHeight - 1); x++)
+		{
+			world[x * nWorldWidth + 1].exist = true;
+			world[x * nWorldWidth + (nWorldWidth - 2)].exist = true;
+		}
 		return true;
 	}
 
 	bool OnUserUpdate(float fElapsedTime) override
 	{
-		float fBlockWidth = 16.0f;
+		
 		// Updating Mouse position
 		float fSourceX = GetMouseX();
 		float fSourceY = GetMouseY();
 
 		// Checking if Mouse has been left clicked 
 		// SO that to switch between making tile and light src
-		if (GetMouse(0).bReleased) {
+		if (GetMouse(1).bReleased) {
 			// To get the index of the tile at which the mouse was released
 			int i = ((int)fSourceY / (int)fBlockWidth) * nWorldWidth + ((int)fSourceX / (int)fBlockWidth);
 			// Making the cell exist as there is a Opaque block here
@@ -224,12 +241,13 @@ public:
 		}
 		ConvertTileMapToPolyMap(0, 0, 40, 30, fBlockWidth, nWorldWidth); 
 		
-
-		pair<float,float> endPoint;
 		bool draw = false;
-		if(GetMouse(1).bHeld){
+		pair <int,int> curMouse;
+		if(GetMouse(0).bHeld){
 			draw = true;
-			endPoint = startRay(GetMouseX(),GetMouseY());
+			curMouse.first = GetMouseX();
+			curMouse.second = GetMouseY();
+			startRay(curMouse.first,curMouse.second);
 		}
 			
 
@@ -250,7 +268,10 @@ public:
 			FillCircle(e.eX, e.eY, 1, olc::GREEN);
 		}
 		if(draw){
-			DrawLine(0, 0,endPoint.first, endPoint.second, olc::WHITE);
+			for(auto ray:endPoints){
+				DrawLine(curMouse.first, curMouse.second, ray.first, ray.second, olc::WHITE);
+				FillCircle(ray.first, ray.second, 2, olc::GREEN);
+			}
 		}
 
 		return true;
