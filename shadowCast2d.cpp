@@ -31,6 +31,39 @@ private:
 	int nWorldWidth = 40;
 	int nWorldHeight = 30;
 
+	pair<float,float> startRay(float lightX, float lightY){
+
+		// lightX and lightY are mouse positions
+		// which are used to determine the direction of light ray
+		float r_dx = lightX;
+		float r_dy = lightY;
+		float r_dxy = sqrtf(r_dx*r_dx + r_dy*r_dy);
+
+		float cos = r_dx/r_dxy;
+		float sin = r_dy/r_dxy;
+		float minT1 = 1000;
+		float T1,T2;
+
+		// For this ray finding the nearest collision point with the edge by checking it with all edges
+		// Rays are send out with radius 50 units
+		for(auto edge:vecEdges){
+			// Solve for T2!
+			T2 = (50*cos*(edge.sY-0) + 50*sin*(-edge.sX))/((edge.eX-edge.sX)*50*sin - (edge.eY-edge.sY)*50*cos);
+
+			// Plug the value of T2 to get T1
+			T1 = (edge.sX+(edge.eX-edge.sX)*T2-0)/(50*cos);
+
+			if(T1>0 && T2>0 && T2<1){
+				if(T1 < minT1)
+					minT1 = T1;
+			}	
+		}
+		
+		// Returning the nearest collision point coordinates
+		pair<float,float> endPoint = {50*cos*minT1,50*sin*minT1};
+		return endPoint;
+
+	}
 
 	vector<sEdge> vecEdges;
 	void ConvertTileMapToPolyMap(int sx, int sy, int w, int h, float fBlockWidth, int pitch) {
@@ -191,6 +224,15 @@ public:
 		}
 		ConvertTileMapToPolyMap(0, 0, 40, 30, fBlockWidth, nWorldWidth); 
 		
+
+		pair<float,float> endPoint;
+		bool draw = false;
+		if(GetMouse(1).bHeld){
+			draw = true;
+			endPoint = startRay(GetMouseX(),GetMouseY());
+		}
+			
+
 		// Drawing The selected blocks
 		// First clearing all screen
 		Clear(olc::DARK_BLUE);
@@ -204,8 +246,11 @@ public:
 		// Drawing Edges from Polymap
 		for(auto &e:vecEdges){
 			DrawLine(e.sX,e.sY,e.eX,e.eY);
-			FillCircle(e.sX, e.sY, 2, olc::RED);
-			FillCircle(e.eX, e.eY, 2, olc::RED);
+			FillCircle(e.sX, e.sY, 1, olc::RED);
+			FillCircle(e.eX, e.eY, 1, olc::GREEN);
+		}
+		if(draw){
+			DrawLine(0, 0,endPoint.first, endPoint.second, olc::WHITE);
 		}
 
 		return true;
@@ -216,7 +261,7 @@ public:
 int main()
 {
 	ShadowCasting2D demo;
-	if (demo.Construct(640, 480, 2, 2))
+	if (demo.Construct(640, 480, 1, 1))
 		demo.Start();
 	
 }

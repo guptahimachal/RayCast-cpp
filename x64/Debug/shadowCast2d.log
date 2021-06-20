@@ -1,20 +1,32 @@
 ﻿  shadowCast2d.cpp
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(77,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(102,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(127,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(152,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(181,18): warning C4244: 'initializing': conversion from 'int32_t' to 'float', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(182,18): warning C4244: 'initializing': conversion from 'int32_t' to 'float', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(201,59): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(201,47): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(201,32): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(201,16): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(206,29): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(206,24): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(206,19): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(206,14): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(207,22): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(207,16): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(208,22): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(208,16): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(110,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(135,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(160,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(185,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(214,18): warning C4244: 'initializing': conversion from 'int32_t' to 'float', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(215,18): warning C4244: 'initializing': conversion from 'int32_t' to 'float', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(232,45): warning C4244: 'argument': conversion from 'int32_t' to 'float', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(232,33): warning C4244: 'argument': conversion from 'int32_t' to 'float', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(243,59): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(243,47): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(243,32): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(243,16): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(248,29): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(248,24): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(248,19): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(248,14): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(249,22): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(249,16): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(250,22): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(250,16): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(253,42): warning C4244: 'argument': conversion from '_Ty2' to 'int32_t', possible loss of data
+          with
+          [
+              _Ty2=float
+          ]
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(253,26): warning C4244: 'argument': conversion from '_Ty1' to 'int32_t', possible loss of data
+          with
+          [
+              _Ty1=float
+          ]
   shadowCast2d.vcxproj -> D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\x64\Debug\shadowCast2d.exe
