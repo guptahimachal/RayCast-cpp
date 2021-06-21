@@ -32,8 +32,9 @@ private:
 	int nWorldWidth = 40;
 	int nWorldHeight = 30;
 	float fBlockWidth = 16.0f;
-
-	vector <pair<int,int>> endPoints;
+    
+	// endpoints - <Xcordinate,Ycoordinate,angle>
+ 	vector <tuple<int,int,float>> endPoints;
 	void startRay(float lightX, float lightY){
 
 		endPoints.clear();
@@ -79,13 +80,15 @@ private:
 						}
 					}
 					if(validIntersect)
-					endPoints.push_back( { r_px + r_dx*minT1  ,  r_py + r_dy*minT1} );
+					endPoints.push_back( { r_px + r_dx*minT1  ,  r_py + r_dy*minT1, angle} );
 				}
 
 			}
 		}
-
-
+		// Sorting all points acc to angle , [&] means accessing all variables by reference
+		sort(endPoints.begin(),endPoints.end(),  [&](const tuple<int, int, float> &t1, const tuple<int, int, float> &t2){
+			return get<2>(t1) < get<2>(t2);
+		});
 	}
 
 	vector<sEdge> vecEdges;
@@ -282,16 +285,35 @@ public:
 			}
 
 		// Drawing Edges from Polymap
-		for(auto &e:vecEdges){
-			DrawLine(e.sX,e.sY,e.eX,e.eY);
-			FillCircle(e.sX, e.sY, 1, olc::RED);
-			FillCircle(e.eX, e.eY, 1, olc::GREEN);
-		}
+		// for(auto &e:vecEdges){
+		// 	DrawLine(e.sX,e.sY,e.eX,e.eY);
+		// 	FillCircle(e.sX, e.sY, 1, olc::RED);
+		// 	FillCircle(e.eX, e.eY, 1, olc::GREEN);
+		// }
+		
+		int nRaysCast = endPoints.size();
+		// Removing similar points
+		auto it = unique(endPoints.begin(),endPoints.end(),[&](tuple <int,int,float> &t1, tuple <int,int,float> &t2){
+			return ( fabs(get<0>(t1)-get<0>(t2)) < 0.1f  && fabs(get<1>(t1) - get<0>(t2)) < 0.1f  );
+		});
+		endPoints.resize(distance(endPoints.begin(),it));
+		int nRaysCast2 = endPoints.size();
+
+		DrawString(4, 4, "Rays Cast: " + to_string(nRaysCast) + " Rays Drawn: " + to_string(nRaysCast2));
+
 		if(draw){
-			for(auto ray:endPoints){
-				DrawLine(curMouse.first, curMouse.second, ray.first, ray.second, olc::WHITE);
-				FillCircle(ray.first, ray.second, 2, olc::GREEN);
+			for(int i=0;i< endPoints.size()-1;i++){
+				FillTriangle(fSourceX,fSourceY,
+							get<0>(endPoints[i]),get<1>(endPoints[i]),
+							get<0>(endPoints[i+1]),get<1>(endPoints[i+1]));
 			}
+			FillTriangle(fSourceX, fSourceY,
+				get<0>(endPoints[0]), get<1>(endPoints[0]),
+				get<0>(endPoints[endPoints.size()-1]), get<1>(endPoints[endPoints.size()-1]));
+			// for(auto ray:endPoints){
+			// 	DrawLine(curMouse.first, curMouse.second, get<0>(ray), get<1>(ray), olc::WHITE);
+			// 	FillCircle(get<0>(ray), get<1>(ray), 2, olc::GREEN);
+			// }
 		}
 
 		return true;
@@ -302,7 +324,7 @@ public:
 int main()
 {
 	ShadowCasting2D demo;
-	if (demo.Construct(640, 480, 2, 2))
+	if (demo.Construct(640, 480, 1, 1))
 		demo.Start();
 	
 }
