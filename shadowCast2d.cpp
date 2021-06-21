@@ -384,6 +384,7 @@ public:
 						unsigned int R = ( (((1<<8) - 1) <<  0) & P ) >>  0;
 						olc::Pixel final(R,G,B,alpha);
 						Draw(x, y, final);
+						
 					}
 						
 						
