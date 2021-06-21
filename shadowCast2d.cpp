@@ -32,6 +32,21 @@ private:
 	int nWorldWidth = 40;
 	int nWorldHeight = 30;
 	float fBlockWidth = 16.0f;
+
+	olc::Sprite *sampleImg;
+	olc::Decal *sampleImgDEC;
+
+	olc::Sprite *wall;
+	olc::Decal *wallDEC;
+
+	olc::Sprite *grassBG;
+	olc::Sprite *grassBGDark;
+	olc::Decal *grassBGDEC;
+
+	olc::Sprite *sprLightCast;
+	olc::Sprite *buffLightRay;
+	olc::Sprite *buffLightTex;
+
     
 	// endpoints - <Xcordinate,Ycoordinate,angle>
  	vector <tuple<int,int,float>> endPoints;
@@ -231,6 +246,18 @@ public:
 		// Called once at the start, so create things here
 		world = new sCell[nWorldWidth * nWorldHeight];
 
+		sampleImg = new olc::Sprite("light2.png");
+		sampleImgDEC = new olc::Decal(sampleImg);
+
+		wall = new olc::Sprite("wall.png");
+		wallDEC = new olc::Decal(wall);
+
+		grassBGDark = new olc::Sprite("grassBGDark.png");
+		grassBG = new olc::Sprite("grassBG.png");		
+		grassBGDEC = new olc::Decal(grassBG);
+
+		buffLightTex = new olc::Sprite(ScreenWidth(), ScreenHeight());
+		buffLightRay = new olc::Sprite(ScreenWidth(), ScreenHeight());
 
 		// Add a boundary to the world
 		for (int x = 1; x < (nWorldWidth - 1); x++)
@@ -250,6 +277,19 @@ public:
 	bool OnUserUpdate(float fElapsedTime) override
 	{
 		
+		// Code for finding out pixel color and alpha values from Pixel
+		// for(int x=0;x<255;x++){
+		// 	olc::Pixel p = grassBGDark->GetPixel(x,255);
+		// 	unsigned int P = p.n;
+
+		// 	unsigned int A = ( (((1<<8) - 1) << 24) & P ) >> 24;
+		// 	unsigned int B = ( (((1<<8) - 1) << 16) & P ) >> 16;
+		// 	unsigned int G = ( (((1<<8) - 1) <<  8) & P ) >>  8;
+		// 	unsigned int R = ( (((1<<8) - 1) <<  0) & P ) >>  0;
+		// 	// cout << R << ',' << G << ','  << B << ',' << A << '\n';
+		// 	// cout << P << '\n';
+		// }
+
 		// Updating Mouse position
 		float fSourceX = GetMouseX();
 		float fSourceY = GetMouseY();
@@ -275,22 +315,19 @@ public:
 			
 
 		// Drawing The selected blocks
-		// First clearing all screen
-		Clear(olc::DARK_BLUE);
+		// First clearing all screen by making BG as Grass
+		SetDrawTarget(nullptr);
+		DrawSprite(0,0, grassBGDark);
+		
 		// Drawing Blocks form tilemap
 		for(int x=0;x<nWorldWidth;x++)
 			for (int y = 0; y < nWorldHeight; y++) {
-				if(world[y*nWorldWidth + x].exist)
-					FillRect(x*fBlockWidth , y*fBlockWidth , fBlockWidth,fBlockWidth , olc::BLUE);
+				if(world[y*nWorldWidth + x].exist){
+					olc::vf2d pos = { float(x*fBlockWidth) , float(y*fBlockWidth) };
+					DrawDecal(pos, wallDEC);
+				}
 			}
 
-		// Drawing Edges from Polymap
-		// for(auto &e:vecEdges){
-		// 	DrawLine(e.sX,e.sY,e.eX,e.eY);
-		// 	FillCircle(e.sX, e.sY, 1, olc::RED);
-		// 	FillCircle(e.eX, e.eY, 1, olc::GREEN);
-		// }
-		
 		int nRaysCast = endPoints.size();
 		// Removing similar points
 		auto it = unique(endPoints.begin(),endPoints.end(),[&](tuple <int,int,float> &t1, tuple <int,int,float> &t2){
@@ -299,9 +336,25 @@ public:
 		endPoints.resize(distance(endPoints.begin(),it));
 		int nRaysCast2 = endPoints.size();
 
-		DrawString(4, 4, "Rays Cast: " + to_string(nRaysCast) + " Rays Drawn: " + to_string(nRaysCast2));
+		// DrawString(4, 4, "Rays Cast: " + to_string(nRaysCast) + " Rays Drawn: " + to_string(nRaysCast2));
+		DrawString(16, 4, "Press Right-Click for Wall , Left Click for Light",olc::WHITE,1.5);
 
 		if(draw){
+
+			// Clear offscreen buffer for sprite
+			SetDrawTarget(buffLightTex);
+			Clear(olc::BLANK);
+
+			// Draw "Radial Light" sprite to offscreen buffer, centered around 
+			// source location (the mouse coordinates, buffer is 512x512)
+			SetPixelMode(olc::Pixel::ALPHA);
+			DrawSprite(fSourceX - 255, fSourceY - 255, sampleImg);
+			SetPixelMode(olc::Pixel::NORMAL);
+
+			// Clear offsecreen buffer for rays
+			SetDrawTarget(buffLightRay);
+			Clear(olc::BLANK);
+
 			for(int i=0;i< endPoints.size()-1;i++){
 				FillTriangle(fSourceX,fSourceY,
 							get<0>(endPoints[i]),get<1>(endPoints[i]),
@@ -310,10 +363,30 @@ public:
 			FillTriangle(fSourceX, fSourceY,
 				get<0>(endPoints[0]), get<1>(endPoints[0]),
 				get<0>(endPoints[endPoints.size()-1]), get<1>(endPoints[endPoints.size()-1]));
-			// for(auto ray:endPoints){
-			// 	DrawLine(curMouse.first, curMouse.second, get<0>(ray), get<1>(ray), olc::WHITE);
-			// 	FillCircle(get<0>(ray), get<1>(ray), 2, olc::GREEN);
-			// }
+
+			SetDrawTarget(nullptr);
+			for (int x = 0; x < ScreenWidth(); x++)
+				for (int y = 0; y < ScreenHeight(); y++)
+					if (buffLightRay->GetPixel(x, y).r > 0){
+						// Getting the pixel value of the light and setting the alpha of grass background acc to it 
+						olc::Pixel grad = buffLightTex->GetPixel(x, y);
+						unsigned int P = grad.n;
+						unsigned int alpha = ( (((1<<8) - 1) <<  0) & P ) >>  0;
+						// Pumping up the very low values of alpha , so that bg is visible 
+						// Default is 63
+						if(alpha < 101)
+							alpha = 100;
+
+						olc::Pixel target = grassBGDark->GetPixel(x,y);
+						P = target.n;
+						unsigned int B = ( (((1<<8) - 1) << 16) & P ) >> 16;
+						unsigned int G = ( (((1<<8) - 1) <<  8) & P ) >>  8;
+						unsigned int R = ( (((1<<8) - 1) <<  0) & P ) >>  0;
+						olc::Pixel final(R,G,B,alpha);
+						Draw(x, y, final);
+					}
+						
+						
 		}
 
 		return true;
