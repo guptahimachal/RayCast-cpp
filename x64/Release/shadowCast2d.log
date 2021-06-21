@@ -1,34 +1,32 @@
 ﻿  shadowCast2d.cpp
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(46,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(47,15): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(113,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(138,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(163,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(188,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(231,18): warning C4244: 'initializing': conversion from 'int32_t' to 'float', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(232,18): warning C4244: 'initializing': conversion from 'int32_t' to 'float', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(250,36): warning C4244: 'argument': conversion from '_Ty2' to 'float', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(133,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(158,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(183,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(208,1): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(251,18): warning C4244: 'initializing': conversion from 'int32_t' to 'float', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(252,18): warning C4244: 'initializing': conversion from 'int32_t' to 'float', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(270,36): warning C4244: 'argument': conversion from '_Ty2' to 'float', possible loss of data
           with
           [
               _Ty2=int
           ]
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(250,21): warning C4244: 'argument': conversion from '_Ty1' to 'float', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(270,21): warning C4244: 'argument': conversion from '_Ty1' to 'float', possible loss of data
           with
           [
               _Ty1=int
           ]
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(261,59): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(261,47): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(261,32): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(261,16): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(266,29): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(266,24): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(266,19): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(266,14): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(267,22): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(267,16): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(268,22): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(268,16): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(281,59): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(281,47): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(281,32): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(281,16): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(286,29): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(286,24): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(286,19): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(286,14): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(287,22): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(287,16): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(288,22): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(288,16): warning C4244: 'argument': conversion from 'float' to 'int32_t', possible loss of data
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.27.29110\include\utility(192,16): warning C4244: 'initializing': conversion from '_Ty' to '_Ty1', possible loss of data
           with
           [
@@ -38,13 +36,13 @@ C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.2
           [
               _Ty1=int
           ]
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(66): message : see reference to function template instantiation 'std::pair<int,int>::pair<float,float,0>(_Other1 &&,_Other2 &&) noexcept' being compiled
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(82): message : see reference to function template instantiation 'std::pair<int,int>::pair<float,float,0>(_Other1 &&,_Other2 &&) noexcept' being compiled
           with
           [
               _Other1=float,
               _Other2=float
           ]
-D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(66): message : see reference to function template instantiation 'std::pair<int,int>::pair<float,float,0>(_Other1 &&,_Other2 &&) noexcept' being compiled
+D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\shadowCast2d.cpp(82): message : see reference to function template instantiation 'std::pair<int,int>::pair<float,float,0>(_Other1 &&,_Other2 &&) noexcept' being compiled
           with
           [
               _Other1=float,
@@ -60,8 +58,8 @@ C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.2
               _Ty2=int
           ]
   Generating code
-  4 of 1270 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+  2 of 1272 functions ( 0.2%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   shadowCast2d.vcxproj -> D:\CPP\Game Engine\2. Shadow Casting 2D\shadowCast2d\x64\Release\shadowCast2d.exe

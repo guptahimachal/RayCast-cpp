@@ -41,30 +41,50 @@ private:
 		float r_px = lightX;
 		float r_py = lightY;
 		float radius = 20 * fBlockWidth;
-		int numRays = 180;
-		for (int ang = 1; ang < 361; ang += 360 / numRays) {
-			float r_dx = radius * cos(ang*M_PI/180);
-			float r_dy = radius * sin(ang*M_PI/180);
-			float minT1 = 50,T1,T2;
 
-			for(auto edge:vecEdges){
-				
-				float s_px = edge.sX; float s_dx = edge.eX-edge.sX;
-				float s_py = edge.sY; float s_dy = edge.eY-edge.sY;
-				// Solve for T2!
-				T2 = (r_dx*(s_py-r_py) + r_dy*(r_px-s_px))/(s_dx*r_dy - s_dy*r_dx);
+		for(auto edge1:vecEdges){
+			// for each of the 2 end of each edge emerging 3 rays
+			for(int i=0;i<2;i++){
+				float r_dx = (i==0 ? edge1.sX : edge1.eX) - r_px;
+				float r_dy = (i==0 ? edge1.sY : edge1.eY) - r_py;
 
-				// Plug the value of T2 to get T1
-				T1 = (s_px+s_dx*T2-r_px)/r_dx;
+				float baseAngle = atan2f(r_dy,r_dx),angle;
 
-				if(T1>0 && T2>0 && T2<1){
-					if(T1 < minT1)
-						minT1 = T1;
+				for(int j=0;j<2;j++){
+					if(j==0) angle = baseAngle - 0.0001f;
+					if(j==2) angle = baseAngle;
+					if(j==1) angle = baseAngle + 0.0001f;
+
+					r_dx = radius * cosf(angle);
+					r_dy = radius * sinf(angle);
+					float minT1 = 50,T1,T2;
+					bool validIntersect = false;
+					for(auto iterEdge:vecEdges){
+						
+						float s_px = iterEdge.sX; float s_dx = iterEdge.eX-iterEdge.sX;
+						float s_py = iterEdge.sY; float s_dy = iterEdge.eY-iterEdge.sY;
+						if (fabs(s_dx - r_dx) > 0.0f && fabs(s_dy - r_dy) > 0.0f){
+							// Solve for T2!
+							T2 = (r_dx*(s_py-r_py) + r_dy*(r_px-s_px))/(s_dx*r_dy - s_dy*r_dx);
+
+							// Plug the value of T2 to get T1
+							T1 = (s_px+s_dx*T2-r_px)/r_dx;
+
+							if(T1>0 && T2>0 && T2<1){
+								if(T1 < minT1){
+									minT1 = T1;
+									validIntersect = true;
+								}
+							}
+						}
+					}
+					if(validIntersect)
+					endPoints.push_back( { r_px + r_dx*minT1  ,  r_py + r_dy*minT1} );
 				}
-					
+
 			}
-			endPoints.push_back( { r_px + r_dx*minT1  ,  r_py + r_dy*minT1 } );
 		}
+
 
 	}
 
@@ -282,7 +302,7 @@ public:
 int main()
 {
 	ShadowCasting2D demo;
-	if (demo.Construct(640, 480, 1, 1))
+	if (demo.Construct(640, 480, 2, 2))
 		demo.Start();
 	
 }
