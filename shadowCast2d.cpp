@@ -47,6 +47,11 @@ private:
 	olc::Sprite *buffLightRay;
 	olc::Sprite *buffLightTex;
 
+	olc::Sprite *bulbOff;
+	olc::Decal *bulbOffDEC;
+	olc::Sprite *bulbOn;
+	olc::Decal *bulbOnDEC;
+
     
 	// endpoints - <Xcordinate,Ycoordinate,angle>
  	vector <tuple<int,int,float>> endPoints;
@@ -246,14 +251,20 @@ public:
 		// Called once at the start, so create things here
 		world = new sCell[nWorldWidth * nWorldHeight];
 
-		sampleImg = new olc::Sprite("light2.png");
+		sampleImg = new olc::Sprite("assets/light5.png");
 		sampleImgDEC = new olc::Decal(sampleImg);
 
-		wall = new olc::Sprite("wall.png");
+		wall = new olc::Sprite("assets/wall.png");
 		wallDEC = new olc::Decal(wall);
 
-		grassBGDark = new olc::Sprite("grassBGDark.png");
-		grassBG = new olc::Sprite("grassBG.png");		
+		bulbOff = new olc::Sprite("assets/bulb-0.png");
+		bulbOffDEC = new olc::Decal(bulbOff);
+
+		bulbOn = new olc::Sprite("assets/bulb-1.png");
+		bulbOnDEC = new olc::Decal(bulbOn);
+
+		grassBGDark = new olc::Sprite("assets/grassBGDark.png");
+		grassBG = new olc::Sprite("assets/grassBG.png");		
 		grassBGDEC = new olc::Decal(grassBG);
 
 		buffLightTex = new olc::Sprite(ScreenWidth(), ScreenHeight());
@@ -339,6 +350,12 @@ public:
 		// DrawString(4, 4, "Rays Cast: " + to_string(nRaysCast) + " Rays Drawn: " + to_string(nRaysCast2));
 		DrawString(16, 4, "Press Right-Click for Wall , Left Click for Light",olc::WHITE,1.5);
 
+		olc::vf2d mouse = { float(fSourceX-16) , float(fSourceY-32) };
+		if(draw)
+			DrawDecal(mouse, bulbOnDEC);
+		else
+			DrawDecal(mouse, bulbOffDEC);
+
 		if(draw){
 
 			// Clear offscreen buffer for sprite
@@ -348,7 +365,7 @@ public:
 			// Draw "Radial Light" sprite to offscreen buffer, centered around 
 			// source location (the mouse coordinates, buffer is 512x512)
 			SetPixelMode(olc::Pixel::ALPHA);
-			DrawSprite(fSourceX - 255, fSourceY - 255, sampleImg);
+			DrawSprite(fSourceX - sampleImg->width/2, fSourceY - sampleImg->height/2, sampleImg);
 			SetPixelMode(olc::Pixel::NORMAL);
 
 			// Clear offsecreen buffer for rays
@@ -374,8 +391,8 @@ public:
 						unsigned int alpha = ( (((1<<8) - 1) <<  0) & P ) >>  0;
 						// Pumping up the very low values of alpha , so that bg is visible 
 						// Default is 63
-						if(alpha < 101)
-							alpha = 100;
+						if(alpha < 66)
+							alpha = 65;
 
 						olc::Pixel target = grassBGDark->GetPixel(x,y);
 						P = target.n;

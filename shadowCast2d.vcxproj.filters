@@ -24,4 +24,24 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="grassBG.png">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="grassBGDark.png">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="light.png">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="light2.png">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="light3.png">
+      <Filter>Source Files</Filter>
+    </Image>
+    <Image Include="wall.png">
+      <Filter>Source Files</Filter>
+    </Image>
+  </ItemGroup>
 </Project>
